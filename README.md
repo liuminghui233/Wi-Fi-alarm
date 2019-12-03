@@ -26,7 +26,7 @@
 
 ### 2.1 采集模式
 
-**Step1：**接收方运行
+Step1：接收方运行
 
 ```shell
 ping <ip> -i <time>
@@ -37,7 +37,7 @@ ping <ip> -i <time>
 - `<ip>`为路由器IP地址（如192.168.1.1）
 - `<time>`为发包间隔
 
-**Step2：**接收方将工作目录切换到`netlink`目录下，运行以下命令：
+Step2：接收方将工作目录切换到`netlink`目录下，运行以下命令：
 
 ```shell
 sudo ./log_to_file test.dat
@@ -47,7 +47,7 @@ sudo ./log_to_file test.dat
 
 ### 2.2 实时监测模式
 
-**Step1：**接收方运行
+Step1：接收方运行
 
 ```shell
 ping <ip> -i <time>
@@ -58,9 +58,9 @@ ping <ip> -i <time>
 - `<ip>`为路由器IP地址（如192.168.1.1）
 - `<time>`为发包间隔
 
-**Step2：**分析方在`matlab`目录下运行`read_bf_socket.m`
+Step2：分析方在`matlab`目录下运行`read_bf_socket.m`
 
-**Step3：**接收方将工作目录切换到`netlink`目录下，运行以下命令：
+Step3：接收方将工作目录切换到`netlink`目录下，运行以下命令：
 
 ```shell
 gcc log_to_server.c -o log_to_server
