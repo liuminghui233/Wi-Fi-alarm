@@ -5,7 +5,7 @@ index = -1;                     % The index of the plots which need shadowing
 broken_perm = 0;                % Flag marking whether we've encountered a broken CSI yet
 triangle = [1 3 6];             % What perm should sum to for 1,2,3 antennas
 
-csi_trace = read_bf_file('data/place301.dat');
+csi_trace = read_bf_file('csi_data/go_go01.dat');
 num_package = length(csi_trace); % 509
 
 first_ant_csi = ones(30,1)*nan;
@@ -56,12 +56,12 @@ for k = 1:num_package
     xlabel('Subcarrier index');
     ylabel('CSI Amplitude');
     set(gcf,'units','normalized','position',[0.1 0.1 0.6 0.6]);
-    set(p(index*3 + 1),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,1,:)).')), 'color', 'b', 'linestyle', '-');
+    set(p(index*3 + 1),'XData', [1:30], 'YData', first_ant_csi(:,k), 'color', 'b', 'linestyle', '-');
     if Nrx > 1
-        set(p(index*3 + 2),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,2,:)).')), 'color', 'g', 'linestyle', '-');
+        set(p(index*3 + 2),'XData', [1:30], 'YData', second_ant_csi(:,k), 'color', 'g', 'linestyle', '-');
     end
     if Nrx > 2
-        set(p(index*3 + 3),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,3,:)).')), 'color', 'r', 'linestyle', '-');
+        set(p(index*3 + 3),'XData', [1:30], 'YData', third_ant_csi(:,k), 'color', 'r', 'linestyle', '-');
     end
     axis([1,30,0,40]);
     % drawnow;
