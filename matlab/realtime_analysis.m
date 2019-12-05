@@ -86,17 +86,17 @@ while 1
         
         % CSI Amplitude
         csia=abs(squeeze(csi(1,:,:)).');
-        first_ant_csi(:,k)=csia(:,1);
-        second_ant_csi(:,k)=csia(:,2);
-        third_ant_csi(:,k)=csia(:,3);
+        first_ant_csi=csia(:,1);
+        second_ant_csi=csia(:,2);
+        third_ant_csi=csia(:,3);
         
         % CSI Phase
         csis =  squeeze(csi(1,:,:)).';
         [csilt, ~] = linear_transform(csis.');
         csip = angle(csilt.');
-        first_ph_csi(:,k)=csip(:,1);
-        second_ph_csi(:,k)=csip(:,2);
-        third_ph_csi(:,k)=csip(:,3);
+        first_ph_csi=csip(:,1);
+        second_ph_csi=csip(:,2);
+        third_ph_csi=csip(:,3);
         
         %This plot will show graphics about recent 10 csi packets
         clf;
@@ -106,12 +106,12 @@ while 1
         xlabel('Subcarrier index');
         ylabel('CSI Amplitude');
         set(gcf,'units','normalized','position',[0.1 0.1 0.6 0.6]);
-        set(p1(index*3 + 1),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,1,:)).')), 'color', 'b', 'linestyle', '-');
+        set(p1(index*3 + 1),'XData', [1:30], 'YData', first_ant_csi, 'color', 'b', 'linestyle', '-');
         if Nrx > 1
-            set(p1(index*3 + 2),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,2,:)).')), 'color', 'g', 'linestyle', '-');
+            set(p1(index*3 + 2),'XData', [1:30], 'YData', second_ant_csi, 'color', 'g', 'linestyle', '-');
         end
         if Nrx > 2
-            set(p1(index*3 + 3),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,3,:)).')), 'color', 'r', 'linestyle', '-');
+            set(p1(index*3 + 3),'XData', [1:30], 'YData', third_ant_csi, 'color', 'r', 'linestyle', '-');
         end
         axis([1,30,0,40]);
         
@@ -120,12 +120,12 @@ while 1
         p2 = plot(t2,m2,'MarkerSize',5);
         xlabel('Subcarrier index');
         ylabel('CSI Phase');
-        set(p2(index*3 + 1),'XData', [1:30], 'YData',first_ph_csi(:,k), 'color', 'b', 'linestyle', '-');
+        set(p2(index*3 + 1),'XData', [1:30], 'YData',first_ph_csi, 'color', 'b', 'linestyle', '-');
         if Nrx > 1
-            set(p2(index*3 + 2),'XData', [1:30], 'YData', second_ph_csi(:,k), 'color', 'g', 'linestyle', '-');
+            set(p2(index*3 + 2),'XData', [1:30], 'YData', second_ph_csi, 'color', 'g', 'linestyle', '-');
         end
         if Nrx > 2
-            set(p2(index*3 + 3),'XData', [1:30], 'YData', third_ph_csi(:,k), 'color', 'r', 'linestyle', '-');
+            set(p2(index*3 + 3),'XData', [1:30], 'YData', third_ph_csi, 'color', 'r', 'linestyle', '-');
         end
         axis([1,30,-0.5,0.5]);
         
