@@ -22,19 +22,19 @@
 
   - 通过观察信噪比，可以直观看出，测试环境中有人与无人信号有明显区别，验证了CSI信号做为特征的可行性
 
-    ![空环境下的信噪比](C:\Users\54920\AppData\Roaming\Typora\typora-user-images\1575516167679.png)
+    ![空环境下的信噪比](https://s2.ax1x.com/2019/12/05/Q3fwFS.png)
 
-    ![有人经过时的信噪比](C:\Users\54920\AppData\Roaming\Typora\typora-user-images\1575516309250.png)
+    ![有人经过时的信噪比](https://s2.ax1x.com/2019/12/05/Q3fsQs.png)
 
   - 所提取出CSI信号的赋值、相位等稳定性很差，达不到可以做为特征的条件，需进行进一步的处理
 
-    ![幅值与相位信息](C:\Users\54920\AppData\Roaming\Typora\typora-user-images\1575516462943.png)
+    ![幅值与相位信息](https://s2.ax1x.com/2019/12/05/Q3f6Lq.png)
 
 - 采集了用于进一步信号处理的实验数据
 
   - 实验环境
 
-    ![](C:\Users\54920\AppData\Roaming\Typora\typora-user-images\1575514639929.png)
+    ![](https://s2.ax1x.com/2019/12/05/Q3fyyn.png)
 
   - 数据情况
 
@@ -53,7 +53,7 @@
 
 - 完成对CSI信号幅值的处理，增强其稳定性，使其可作为特征
 
-  ![CSI数据预处理方案](C:\Users\54920\AppData\Roaming\Typora\typora-user-images\1575515220180.png)
+  ![CSI数据预处理方案](https://s2.ax1x.com/2019/12/05/Q3f0Jg.png)
 
 - 从处理后CSI信号幅值中提取特征进行环境异常判别，初步有以下想法：
   - 指数加权平均算法
