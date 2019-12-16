@@ -6,7 +6,7 @@ broken_perm = 0;                % Flag marking whether we've encountered a broke
 triangle = [1 3 6];             % What perm should sum to for 1,2,3 antennas
 
 csi_trace = read_bf_file('csi_data/go_go01.dat');
-num_package = length(csi_trace); % 509
+num_package = length(csi_trace);
 
 first_ant_csi = ones(30,1)*nan;
 second_ant_csi = ones(30,1)*nan;
