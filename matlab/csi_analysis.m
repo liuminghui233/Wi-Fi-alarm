@@ -5,7 +5,11 @@ index = -1;                     % The index of the plots which need shadowing
 broken_perm = 0;                % Flag marking whether we've encountered a broken CSI yet
 triangle = [1 3 6];             % What perm should sum to for 1,2,3 antennas
 
-csi_trace = read_bf_file('csi_data/go_go01.dat');
+probability = 0;
+
+load SVMModel.mat;
+
+csi_trace = read_bf_file('csi_data/static01.dat');
 num_package = length(csi_trace);
 
 first_ant_csi = ones(30,1)*nan;
@@ -27,6 +31,11 @@ for k = 1:num_package
     
     csi = get_scaled_csi(csi_entry);%CSI data
     %You can use the CSI data here.
+    feature_vetor = get_feature_vetor(csi_entry);
+    yfit = SVMModel.predictFcn(feature_vetor);
+    if yfit == 1
+        probability = probability+1;
+    end
     
     % CSI Amplitude
     csia=abs(squeeze(csi(1,:,:)).');
@@ -100,3 +109,4 @@ for k = 1:num_package
     csi_entry = [];
 end
 
+probability = probability/60
