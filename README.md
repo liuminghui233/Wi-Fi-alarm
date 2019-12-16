@@ -137,13 +137,8 @@ Step3：接收方将工作目录切换到`netlink`目录下，运行以下命令
 
 ```shell
 gcc log_to_server.c -o log_to_server
-sudo ./log_to_server <ip> <port>
+sudo ./log_to_server
 ```
-
-其中：
-
-- `<ip>`为分析方IP地址（如192.168.1.102）
-- `<port>`为分析方监听端口（默认为8090）
 
 
 
