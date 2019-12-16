@@ -9,7 +9,7 @@ probability = 0;
 
 load SVMModel.mat;
 
-csi_trace = read_bf_file('csi_data/static01.dat');
+csi_trace = read_bf_file('csi_data/go_go01.dat');
 num_package = length(csi_trace);
 
 first_ant_csi = ones(30,1)*nan;
@@ -20,7 +20,7 @@ first_ph_csi = ones(30,1)*nan;
 second_ph_csi = ones(30,1)*nan;
 third_ph_csi = ones(30,1)*nan;
 
-for k = 1:num_package
+for k = 1:60
     csi_entry = csi_trace{k};
     
     perm = csi_entry.perm;
@@ -31,11 +31,6 @@ for k = 1:num_package
     
     csi = get_scaled_csi(csi_entry);%CSI data
     %You can use the CSI data here.
-    feature_vetor = get_feature_vetor(csi_entry);
-    yfit = SVMModel.predictFcn(feature_vetor);
-    if yfit == 1
-        probability = probability+1;
-    end
     
     % CSI Amplitude
     csia=abs(squeeze(csi(1,:,:)).');
@@ -108,5 +103,3 @@ for k = 1:num_package
     drawnow;
     csi_entry = [];
 end
-
-probability = probability/60
