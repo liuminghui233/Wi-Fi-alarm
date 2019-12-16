@@ -52,18 +52,18 @@ for i=(N+1):M
         csi(k,:,i-N)=csi_point(k,[1:30],i-N);
     end
     %×÷Í¼£¨Ê±ÓòÆµÓò£©
-    hold on
-    plot(db(abs(squeeze(csi(1,:,i-N)))),'r')
-    hold on
-    plot(db(abs(squeeze(csi(2,:,i-N)))),'b')
-    hold on
-    plot(db(abs(squeeze(csi(3,:,i-N)))),'g')
-    xlabel('Subcarrier index');
-    ylabel('SNR [dB]');
+%     hold on
+%     plot(db(abs(squeeze(csi(1,:,i-N)))),'r')
+%     hold on
+%     plot(db(abs(squeeze(csi(2,:,i-N)))),'b')
+%     hold on
+%     plot(db(abs(squeeze(csi(3,:,i-N)))),'g')
+%     xlabel('Subcarrier index');
+%     ylabel('SNR [dB]');
 end
 
 %% 
-numcases=5; %how to group data
+numcases=1; %how to group data
 numdims=90; %visible nodes
 numbatches=(M-N)/numcases;
 data_batch = zeros(numcases, numdims, numbatches);
