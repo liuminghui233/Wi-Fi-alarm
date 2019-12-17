@@ -1,5 +1,5 @@
 function realtime_analysis()
-load SVMbatchModel.mat;
+load SVMtrainedModel.mat;
 while 1
     %% Build a TCP Server and wait for connection
     port = 8090;
@@ -86,24 +86,25 @@ while 1
             end
         end
         
-        index = mod(index+1, 5);
+        index = mod(index+1, 10);
         
         csi = get_scaled_csi(csi_entry);%CSI data
         %You can use the CSI data here.
         if init_flag == 0
-            csi_trace{ct_index} = csi;
+            csi_trace{ct_index} = csi_entry;
             ct_index = ct_index + 1;
-            if ct_index == 60
+            if ct_index == 61
                 init_flag = 1;
             end
         else
             for i=1:59
                 csi_trace{i} = csi_trace{i+1};
             end
-            csi_trace{60} = csi;
+            csi_trace{60} = csi_entry;
+            feature_vetor = get_feature_vetor(csi_trace);
+            feature_vetor = (reshape(feature_vetor,450,1)).';
+            yfit = SVMtrainedModel.predictFcn(feature_vetor)
         end
-        feature_vetor = get_feature_vetor(csi_trace);
-        yfit = SVMbatchModel.predictFcn(feature_vetor);
         
         %This plot will show graphics about recent 10 csi packets
         if yfit == 0
@@ -111,14 +112,14 @@ while 1
         else
             backColor = [0.8 0.2 0.1 0.2];set(gca, 'color', backColor);
         end
-        set(p(index*7),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,1,:)).')), 'color', 'b', 'linestyle', '-');
+        set(p(index*3+1),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,1,:)).')), 'color', 'b', 'linestyle', '-');
         if Nrx > 1
-            set(p(index*7 + 1),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,2,:)).')), 'color', 'g', 'linestyle', '-');
+            set(p(index*3 + 2),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,2,:)).')), 'color', 'g', 'linestyle', '-');
         end
         if Nrx > 2
-            set(p(index*7 + 2),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,3,:)).')), 'color', 'r', 'linestyle', '-');
+            set(p(index*3 + 3),'XData', [1:30], 'YData', db(abs(squeeze(csi(1,3,:)).')), 'color', 'r', 'linestyle', '-');
         end
-        axis([1,30,-10,40]);
+        axis([1,30,15,35]);
         drawnow;
         
         csi_entry = [];
