@@ -9,7 +9,7 @@ probability = 0;
 
 load SVMModel.mat;
 
-csi_trace = read_bf_file('csi_data/fast121701.dat');
+csi_trace = read_bf_file('../svm_classifier/csi_data/02001.dat');
 num_package = length(csi_trace);
 
 first_ant_csi = ones(30,1)*nan;

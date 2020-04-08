@@ -29,7 +29,7 @@ for i=(N+1):M
             time_csi_abs(3,:,i-N)=abs(time_csi(3,:,i-N));
         end
     end
-    %滤波处理
+%     %滤波处理
     for k=1:point
         if(time_csi_abs(1,k,i-N))<0.2*max(time_csi_abs(1,:,i-N))
             time_csi(1,k,i-N)=0;
@@ -52,18 +52,29 @@ for i=(N+1):M
         csi(k,:,i-N)=csi_point(k,[1:30],i-N);
     end
     %作图（时域频域）
+%     hold on
+%     plot(abs(squeeze(csi(1,:,i-N))),'r')
+%     hold on
+%     plot(abs(squeeze(csi(2,:,i-N))),'b')
+%     hold on
+%     plot(abs(squeeze(csi(3,:,i-N))),'g')
+%     xlabel('Subcarrier index');
+%     ylabel('CSI Amplitude');
+    %ylabel('SNR [dB]');
+    figure(2);
     hold on
-    plot(db(abs(squeeze(csi(1,:,i-N)))),'r')
+    plot(abs(time_csi(1,:,i-N)),'r')
     hold on
-    plot(db(abs(squeeze(csi(2,:,i-N)))),'b')
+    plot(abs(time_csi(2,:,i-N)),'b')
     hold on
-    plot(db(abs(squeeze(csi(3,:,i-N)))),'g')
-    xlabel('Subcarrier index');
-    ylabel('SNR [dB]');
+    plot(abs(time_csi(3,:,i-N)),'g')
+    % xlabel('Subcarrier index');
+    ylabel('CFR');
 end
 
+save csi00af;
 %% 
-numcases=5; %how to group data
+numcases=1; %how to group data (1 2 4 6 8)
 numdims=90; %visible nodes
 numbatches=(M-N)/numcases;
 data_batch = zeros(numcases, numdims, numbatches);
