@@ -1,6 +1,6 @@
 # WIFI_alarm——基于WIFI CSI的环境异常感知
 
-项目详情见项目报告书：
+项目详情见[项目报告书](https://github.com/liuminghui233/Wi-Fi-alarm/blob/master/WiFi_alarm%E9%A1%B9%E7%9B%AE%E6%8A%A5%E5%91%8A.pdf)
 
 ## 1 实验环境
 
